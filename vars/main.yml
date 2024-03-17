@@ -1,0 +1,10 @@
+---
+
+actions:
+  - configure_server
+  - configure_server_description : "Configure server."
+  - configure_server_vm_icon : "media/icon_tng_config.png"
+  - configure_vault
+  - configure_vault_description : "Configure vault."
+  - configure_vault_vm_icon : "media/icon_tng_config.png"
+  
