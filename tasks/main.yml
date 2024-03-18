@@ -13,9 +13,9 @@
     quiet: true
 
 - name: Configure server
-  ansible.builtin.include_tasks: configure.yml
+  ansible.builtin.include_tasks: configure_server.yml
   when: action == "configure_server"
 
 - name: Configure vault
-  ansible.builtin.include_tasks: configure.yml
+  ansible.builtin.include_tasks: configure_vault.yml
   when: action == "configure_vault"

@@ -1,0 +1,20 @@
+---
+
+#########################################################
+## Pre-installation                                    ##
+#########################################################
+
+#########################################################
+## Network configuration                               ##
+#########################################################
+
+# Set hostname
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ admin_hostname }}"
+  when: admin_hostname is defined
+
+# Set timezone to Europe/Amsterdam
+- name: Set timezone to Europe/Amsterdam
+  community.general.timezone:
+    name: Europe/Amsterdam
