@@ -1,2 +1,2 @@
-# ansible-role-tng-config
-Ansible role for TNG framework server configuration
+# ansible-role-vmconfig
+Ansible role for configuring virtual machines
