@@ -11,17 +11,16 @@
 # Validate variables
 - name: Validate variables for action.
   ansible.builtin.assert:
-    that: "{{ item }} is defined"
+    that: "item is defined"
     fail_msg: "Required variable '{{ item }}' has not been provided."
     quiet: true
   with_items:
     - vault_address
     - vault_token
-    - admin_username
-    - admin_password  
-    - admin_email
+    - automation_username
+    - automation_password  
+    - automation_email
     
-
 #########################################################
 ## Configuration Vault KV                              ##
 #########################################################
@@ -58,4 +57,4 @@
     action: create_secret
     vault_name: "{{ ansible_fqdn | replace('.', '-') }}"
     secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
-    secret_keyvalue: "{ 'admin_username': '{{ admin_username }}', 'admin_password': '{{ admin_password }}', 'admin_email': '{{ admin_email }}' }"
+    secret_keyvalue: "{ 'automation_username': '{{ automation_username }}', 'automation_password': '{{ automation_password }}', 'automation_email': '{{ automation_email }}' }"

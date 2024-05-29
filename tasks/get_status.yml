@@ -1,0 +1,12 @@
+---
+
+#########################################################
+## Get status                                          ##
+#########################################################
+# If action variable is not defined, set to install
+
+# Set action variable if not defined
+- name: Set action variable
+  set_fact:
+    action: "install"
+  when: action is not defined

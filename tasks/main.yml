@@ -1,9 +1,14 @@
 --- 
 
-- name: Set wait
-  ansible.builtin.set_fact:
-    wait: false
-  when: wait is not defined
+# Show message
+- name: Show Information message
+  debug:
+    msg: "Starting role {{ role_name }}... action: {{ action }}."
+
+# If action variable is not defined, gather status of the service and set action variable  
+- name: Determine action variable status
+  ansible.builtin.include_tasks: get_status.yml
+  when: action is not defined
 
 - name: Verify variable input
   ansible.builtin.assert:
@@ -11,6 +16,8 @@
       - action is defined and action in actions
     fail_msg: "Please provide 'action' {{ actions }}"
     quiet: true
+
+# -------------------------------------------------------
 
 - name: Configure server
   ansible.builtin.include_tasks: configure_server.yml

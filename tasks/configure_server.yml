@@ -11,10 +11,10 @@
 # Set hostname
 - name: Set hostname
   ansible.builtin.hostname:
-    name: "{{ admin_hostname }}"
-  when: admin_hostname is defined
+    name: "{{ server_hostname }}"
+  when: server_hostname is defined
 
-# Set timezone to Europe/Amsterdam
-- name: Set timezone to Europe/Amsterdam
+# Set timezone 
+- name: "Set timezone to {{ timezone }}"
   community.general.timezone:
-    name: Europe/Amsterdam
+    name: "{{ timezone }}"
