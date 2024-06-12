@@ -18,3 +18,12 @@
 - name: "Set timezone to {{ timezone }}"
   community.general.timezone:
     name: "{{ timezone }}"
+
+# Install packages
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nano
+    - git
