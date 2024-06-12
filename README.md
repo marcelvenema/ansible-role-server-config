@@ -3,7 +3,7 @@
 <table border="0">
   <tr>
     <td width="160px" valign="top"><img src="media/icon_vm_config.png" align="left" height="128" width="128" /></td>
-    <td>Ansible playbooks voor configuratie van een virtuele machine.<br/>
+    <td>Ansible playbooks voor configuratie van een server.<br/>
         <br/>
         <br/>
         <br/>
@@ -24,8 +24,10 @@
   <kbd>admin_username</kbd> : "ansible"<br/>
   <kbd>admin_password</kbd> : "change_me"<br/>
   <kbd>admin_email</kbd> : "email@mindef.nl"<br/>
-  <kdb>vault_address</kbd> : <br/>
-  <kbd>vault_token</kbd> : <br/>
+  
+  Indien onderstaande gegevens worden toegevoegd, wordt bij installatie een key/value secret engine in de vault gemaakt met bovenstaande gegevens.<br/>  
+  <kbd>vault_address</kbd>         : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`. <br/>
+  <kbd>vault_token</kbd>           : token voor toegang tot vault.<br/>
 
 
 ***

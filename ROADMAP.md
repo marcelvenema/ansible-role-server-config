@@ -2,7 +2,7 @@
 ***
 
 <img src="media/icon_vm_config.png" align="left" height="128" width="128" />
-De ansible role vm_config is een tijdelijke rol voor de initiele configuratie van een server.<br/>
+De ansible role server_config is een tijdelijke rol voor de initiele configuratie van een server.<br/>
 <br/>
 <br/>
 <br/>
