@@ -9,18 +9,18 @@
 #########################################################
 
 # Set hostname
-- name: Set hostname
+- name: "Set hostname to {{ server_hostname }}..."
   ansible.builtin.hostname:
     name: "{{ server_hostname }}"
   when: server_hostname is defined
 
 # Set timezone 
-- name: "Set timezone to {{ timezone }}"
+- name: "Set timezone to {{ timezone }}..."
   community.general.timezone:
     name: "{{ timezone }}"
 
 # Install packages
-- name: Install packages
+- name: Install required packages...
   ansible.builtin.package:
     name: "{{ item }}"
     state: present

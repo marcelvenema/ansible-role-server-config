@@ -4,7 +4,7 @@ dependencies: []
 
 galaxy_info:
   author: "Marcel Venema"
-  description: Ansible role for TNG - Config
+  description: Ansible role for server configuration.
   company: ""
   license: MIT
   min_ansible_version: "2.4"

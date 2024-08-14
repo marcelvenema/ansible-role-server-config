@@ -1,16 +1,16 @@
 --- 
 
 # Show message
-- name: Show Information message
+- name: Show action message
   debug:
     msg: "Starting role {{ role_name }}... action: {{ action }}."
 
 # If action variable is not defined, gather status of the service and set action variable  
-- name: Determine action variable status
+- name: Gather action variable status...
   ansible.builtin.include_tasks: get_status.yml
   when: action is not defined
 
-- name: Verify variable input
+- name: "Verify valid action {{ action }}..."
   ansible.builtin.assert:
     that:
       - action is defined and action in actions
@@ -19,10 +19,10 @@
 
 # -------------------------------------------------------
 
-- name: Configure server
+- name: Start configure_server action...
   ansible.builtin.include_tasks: configure_server.yml
   when: action == "configure_server"
 
-- name: Configure vault
+- name: Start configure_vault action...
   ansible.builtin.include_tasks: configure_vault.yml
   when: action == "configure_vault"
