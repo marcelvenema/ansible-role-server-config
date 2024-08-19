@@ -24,11 +24,15 @@
   <kbd>admin_username</kbd> : "ansible"<br/>
   <kbd>admin_password</kbd> : "change_me"<br/>
   <kbd>admin_email</kbd> : "email@mindef.nl"<br/>
-  
-  Indien onderstaande gegevens worden toegevoegd, wordt bij installatie een key/value secret engine in de vault gemaakt met bovenstaande gegevens.<br/>  
+
+  Indien onderstaande gegevens worden toegevoegd, wordt bij installatie een key/value secret engine in de vault gemaakt met bovenstaande gegevens.<br/>
   <kbd>vault_address</kbd>         : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`. <br/>
   <kbd>vault_token</kbd>           : token voor toegang tot vault.<br/>
 
+- **initialize**<br/>
+  Initialiseer omgeving, test Vault verbinding.<br/>
+  variabelen:<br/>
+  (geen)<br/>
 
 ***
 

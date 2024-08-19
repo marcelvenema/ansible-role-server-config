@@ -1,0 +1,36 @@
+---
+
+#########################################################
+## Initialize module                                   ##
+#########################################################
+
+#########################################################
+## Pre-Configuration                                   ##
+#########################################################
+
+# Validate variables
+- name: Validate variables for action.
+  ansible.builtin.assert:
+    that: "item is defined"
+    fail_msg: "Required variable '{{ item }}' has not been provided."
+    quiet: true
+  with_items:
+    - vault_address
+    - vault_token
+
+# Check if Vault is accessible and token is valid
+- name: Gather Vault information...
+  ansible.builtin.uri:
+    url: "{{ vault_address }}/v1/sys/health"
+    method: GET
+    headers:
+      X-Vault-Token: "{{ vault_token }}"
+    return_content: yes
+    status_code: 200
+  register: vault_health
+
+# Show message if Vault is sealed
+- name: Information message...
+  ansible.builtin.fail:
+    msg: "Vault is sealed. Cannot continue, please unseal Vault..."
+  when: vault_health.json.sealed == true

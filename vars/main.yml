@@ -1,11 +1,18 @@
 ---
 
 actions:
+  # Configure server
   - configure_server
   - configure_server_description : "Configure server."
   - configure_server_vm_icon : "media/icon_vm_config.png"
-  
+
+  # Configure vault
   - configure_vault
   - configure_vault_description : "Configure vault."
   - configure_vault_vm_icon : "media/icon_vm_config.png"
-  
+
+  # Initialize
+  # Test the environment. Detect access to the server and the vault.
+  - initialize
+  - initialize_description : "Initialize environment."
+  - initialize_vm_icon : "media/icon_vm_config.png"

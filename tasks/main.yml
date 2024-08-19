@@ -1,11 +1,11 @@
---- 
+---
 
 # Show message
 - name: Show action message
   debug:
     msg: "Starting role {{ role_name }}... action: {{ action }}."
 
-# If action variable is not defined, gather status of the service and set action variable  
+# If action variable is not defined, gather status of the service and set action variable
 - name: Gather action variable status...
   ansible.builtin.include_tasks: get_status.yml
   when: action is not defined
@@ -26,3 +26,8 @@
 - name: Start configure_vault action...
   ansible.builtin.include_tasks: configure_vault.yml
   when: action == "configure_vault"
+
+- name: Start initialize action...
+  ansible.builtin.include_tasks: initialize.yml
+  when: action == "initialize"
+
