@@ -2,17 +2,33 @@
 
 actions:
   # Configure server
-  - configure_server
-  - configure_server_description : "Configure server."
-  - configure_server_vm_icon : "media/icon_vm_config.png"
+  - first_config:
+      description: "First configuration."
+      icon: "media/icon_vm_config.png"
+      parameters: 
+        - server_hostname
+  
+  - configure_server:
+      description: "Configure server."
+      icon: "media/icon_vm_config.png"
+      parameters: 
+        - automation_username
+        - automation_password
 
   # Configure vault
-  - configure_vault
-  - configure_vault_description : "Configure vault."
-  - configure_vault_vm_icon : "media/icon_vm_config.png"
+  - configure_vault:
+      description: "Configure vault."
+      icon: "media/icon_vm_config.png"
+      parameters: 
+        - vault_address
+        - vault_token
 
   # Initialize
   # Test the environment. Detect access to the server and the vault.
-  - initialize
-  - initialize_description : "Initialize environment."
-  - initialize_vm_icon : "media/icon_vm_config.png"
+  - initialize:
+      description: "Initialize environment."
+      icon: "media/icon_vm_config.png"
+      parameters: 
+        - vault_address
+        - vault_token
+

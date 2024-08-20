@@ -9,7 +9,7 @@
 #########################################################
 
 # Validate variables
-- name: Validate variables for action.
+- name: Validate required variables for action.
   ansible.builtin.assert:
     that: "item is defined"
     fail_msg: "Required variable '{{ item }}' has not been provided."
@@ -17,9 +17,6 @@
   with_items:
     - vault_address
     - vault_token
-    - automation_username
-    - automation_password  
-    - automation_email
     
 #########################################################
 ## Configuration Vault KV                              ##
@@ -44,8 +41,8 @@
     tasks_from: secret_engine.yml
   vars:
     action: create_secret_engine
-    vault_name: "{{ ansible_fqdn | replace('.', '-') }}"
-    vault_description: "Secrets for {{ ansible_fqdn }}"
+    vault_name: "devices"
+    vault_description: "Secrets for various devices"
     vault_type: "kv"
 
 # Store usernames and passwords in Hashicorp Vault.
@@ -55,6 +52,16 @@
     tasks_from: secrets.yml
   vars:
     action: create_secret
-    vault_name: "{{ ansible_fqdn | replace('.', '-') }}"
+    vault_name: "devices"
     secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
-    secret_keyvalue: "{ 'automation_username': '{{ automation_username }}', 'automation_password': '{{ automation_password }}', 'automation_email': '{{ automation_email }}' }"
+    secret_keyvalue: "{ 'admin_username': '{{ admin_username }}', 'admin_password': '{{ admin_password }}', 'automation_username': '{{ automation_username }}', 'automation_password': '{{ automation_password }}', 'automation_email': '{{ automation_email }}' }"
+
+#########################################################
+## Post-configure                                      ##
+#########################################################
+
+# Unset variables
+- name: Unset variables...
+  ansible.builtin.set_fact:
+    automation_password:
+    admin_password:

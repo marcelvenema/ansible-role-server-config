@@ -13,8 +13,13 @@
 
 # Diensten:
 
-- **configure_server**<br/>
+- **first_config**<br/>
   Initiele configuratie van server.<br/>
+  variabelen:<br/>
+ <kbd>server_hostname</kbd> : "ansible"<br/>
+
+- **configure_server**<br/>
+  Configuratie van server.<br/>
   variabelen:<br/>
   (geen)<br/>
 
@@ -39,8 +44,6 @@
 - **changelog**<br/>
   Wijzigingen logboek.<br/>
   Zie [changelog](CHANGELOG.md)<br/>
-
-
 
 - **roadmap**<br/>
   Visie en toekomstige ontwikkelingen.<br/>

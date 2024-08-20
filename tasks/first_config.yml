@@ -1,0 +1,34 @@
+---
+
+#########################################################
+## Gather information                                  ##
+#########################################################
+
+# Set action_parameters variable to parameter list in actions where key is equal to action
+- name: "Gather variables for action ({{ action }})..."
+  set_fact:
+    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
+
+#########################################################
+## Network configuration                               ##
+#########################################################
+
+# Set hostname
+- name: "Set hostname to {{ server_hostname }}..."
+  ansible.builtin.hostname:
+    name: "{{ server_hostname }}"
+  when: server_hostname is defined
+
+# Set timezone 
+- name: "Set timezone to {{ timezone }}..."
+  community.general.timezone:
+    name: "{{ timezone }}"
+
+# Install packages
+- name: Install required packages...
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nano
+    - git
