@@ -44,4 +44,15 @@
     automation_password: "{{ lookup('password', '/dev/null length=12 chars=ascii_letters,digits') }}"
   when: automation_password is not defined
 
+# add automation user to sudoers
+- name: Add automation user to sudoers...
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ admin_username }}'
+    line: '{{ admin_username }} ALL=(ALL) NOPASSWD:ALL'
+    validate: 'visudo -cf %s'
+  when: automation_username is defined
+
 
