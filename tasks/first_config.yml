@@ -19,10 +19,13 @@
     name: "{{ server_hostname }}"
   when: server_hostname is defined
 
-# Set timezone 
+# Set timezone
 - name: "Set timezone to {{ timezone }}..."
   community.general.timezone:
     name: "{{ timezone }}"
+
+# Remove IPv6 from host file
+
 
 # Install packages
 - name: Install required packages...
