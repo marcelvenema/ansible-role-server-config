@@ -6,38 +6,41 @@
     <td>Ansible playbooks voor configuratie van een server.<br/>
         <br/>
         <br/>
-        <br/>
+        Wordt mogelijk in de toekomst vervangen door Ansile role os-settings.<br/>
     </td>
   </tr>
 </table>
 
 # Diensten:
 
-- **first_config**<br/>
-  Initiele configuratie van server.<br/>
-  variabelen:<br/>
- <kbd>server_hostname</kbd> : "ansible"<br/>
+action: **first_config**<br/>
+Initiele configuratie van server, o.a. set hostname, timezone, install apps, etc. <br/>
+variabelen:<br/>
+<kbd>server_hostname</kbd> : naam van de server.<br/>
+<kbd>timezone</kbd> (optioneel) : Voorbeeld: 'Europe/Amsterdam'.
 
-- **configure_server**<br/>
-  Configuratie van server.<br/>
-  variabelen:<br/>
-  (geen)<br/>
+action: **configure_server**<br/>
+Configuratie van server, o.a. aanmaken admin user.<br/>
+variabelen:<br/>
+<kbd>admin_username</kbd> (optioneel) : Gebruikersnaam admin user, standaard is 'admin'.<br/>
+<kbd>admin_password</kbd> (optioneel) : Wachtwoord van admin user, standaard is automatisch gegenereerd.<br/>
 
-- **configure_vault**<br/>
-  Configuratie van server gegevens in Hashicorp Vault.<br/>
-  variabelen:<br/>
-  <kbd>admin_username</kbd> : "ansible"<br/>
-  <kbd>admin_password</kbd> : "change_me"<br/>
-  <kbd>admin_email</kbd> : "email@mindef.nl"<br/>
+action: **configure_vault**<br/>
+Configuratie van server gegevens in Hashicorp Vault.<br/>
+variabelen:<br/>
+<kbd>vault_address</kbd> : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`. <br/>
+<kbd>vault_token</kbd> : token voor toegang tot vault.<br/>
+<kbd>admin_username</kbd> (optioneel) : Gebruikersnaam admin user, standaard is 'admin'.<br/>
+<kbd>admin_password</kbd> (optioneel) : Wachtwoord van admin user, standaard is automatisch gegenereerd.<br/>
+<kbd>automation_username</kbd> (optioneel) : Gebruikersnaam automation user, standaard is 'ansible'.<br/>
+<kbd>automation_password</kbd> (optioneel) : Wachtwoord van automation user, standaard is automatisch gegenereerd.<br/>
+<kbd>automation_email</kbd> (optioneel) : "email@mindef.nl"<br/>
 
-  Indien onderstaande gegevens worden toegevoegd, wordt bij installatie een key/value secret engine in de vault gemaakt met bovenstaande gegevens.<br/>
-  <kbd>vault_address</kbd>         : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`. <br/>
-  <kbd>vault_token</kbd>           : token voor toegang tot vault.<br/>
-
-- **initialize**<br/>
-  Initialiseer omgeving, test Vault verbinding.<br/>
-  variabelen:<br/>
-  (geen)<br/>
+action: **initialize**<br/>
+Initialiseer omgeving, test Vault verbinding.<br/>
+variabelen:<br/>
+<kbd>vault_address</kbd> : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`.<br/>
+<kbd>vault_token</kbd> : token voor toegang tot vault.<br/>
 
 ***
 
@@ -49,12 +52,10 @@
   Visie en toekomstige ontwikkelingen.<br/>
   Zie [roadmap](ROADMAP.md)<br/>
 
-
 ***
 
 ## Voorbereidingen
 (geen)<br/>
-
 
 ## Afhankelijkheden
 Afhankelijkheden zijn benoemd in het **requirements.yml** bestand. Gebruik `ansible-galaxy install -r requirements.yml --force` voor installatie.<br/>
@@ -64,25 +65,20 @@ Let op! Vergewis u dat de inhoud van `requirements.yml` verwijst naar de juiste 
 <br/>
 
 
-
 ## Installatie
 Geen installatie benodigd.<br/>
-
 
 
 ## Configuratie
 (geen).<br/>
 
 
-
 ## Overige informatie
 (geen).<br/>
 
 
-
 ## Licentie
 MIT
-
 
 
 ## Auteur

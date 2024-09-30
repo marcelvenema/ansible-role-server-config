@@ -1,5 +1,9 @@
 ---
 
+#########################################################
+## Main module for server-config ansible rol           ##
+#########################################################
+
 # Show message
 - name: Show action message
   debug:
@@ -17,6 +21,7 @@
       - action in (actions | map('dict2items') | map('first') | map(attribute='key') | list)
     fail_msg: "The action '{{ action }}' is not in the list of valid actions..."
     quiet: true
+
 # -------------------------------------------------------
 
 - name: Start first_config action...
@@ -34,4 +39,3 @@
 - name: Start initialize action...
   ansible.builtin.include_tasks: initialize.yml
   when: action == "initialize"
-

@@ -4,10 +4,6 @@
 ## Initialize module                                   ##
 #########################################################
 
-#########################################################
-## Pre-Configuration                                   ##
-#########################################################
-
 # Validate variables
 - name: Validate variables for action.
   ansible.builtin.assert:

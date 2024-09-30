@@ -4,10 +4,6 @@
 ## Vault module                                        ##
 #########################################################
 
-#########################################################
-## Pre-Configuration                                   ##
-#########################################################
-
 # Validate variables
 - name: Validate required variables for action.
   ansible.builtin.assert:
@@ -45,6 +41,48 @@
     vault_description: "Secrets for various devices"
     vault_type: "kv"
 
+#########################################################
+## Configuration secrets                               ##
+#########################################################
+
+# Set variable if not defined
+- name: Set variable (admin_username)...
+  ansible.builtin.set_fact:
+    admin_username: "admin"
+  when: admin_username is not defined
+
+# Set variable if not defined
+- name: Set variable (admin_password)...
+  ansible.builtin.set_fact:
+    admin_password: ""
+
+# Set variable if not defined
+- name: Set variable (automation_username)...
+  ansible.builtin.set_fact:
+    automation_username: "ansible"
+  when: automation_username is not defined
+
+# Set variable if not defined
+- name: Set variable (automation_password)...
+  ansible.builtin.set_fact:
+    automation_password: ""
+
+# Set variable if not defined
+- name: Set variable (automation_email)...
+  ansible.builtin.set_fact:
+    automation_email: "ansible@{{ ansible_fqdn }}"
+  when: automation_email is not defined
+
+# Declare variable _secret_keyvalue
+- name: Register variable (secret_keyvalue)...
+  ansible.builtin.set_fact:
+    _secret_keyvalue: |
+      admin_username: '{{ admin_username }}'
+      admin_password: '{{ admin_password }}'
+      automation_username: '{{ automation_username }}'
+      automation_password: '{{ automation_password }}'
+      automation_email: '{{ automation_email }}'
+
 # Store usernames and passwords in Hashicorp Vault.
 - name: "Store {{ ansible_fqdn }} usernames and passwords in Vault"
   ansible.builtin.include_role:
@@ -54,13 +92,7 @@
     action: create_secret
     vault_name: "devices"
     secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
-    secret_keyvalue: >
-      "{ 'admin_username': '{{ admin_username }}',
-         'admin_password': '{{ admin_password }}',
-         'automation_username': '{{ automation_username }}',
-         'automation_password': '{{ automation_password }}',
-         'automation_email': '{{ automation_email }}'
-      }"
+    secret_keyvalue: "{{ _secret_keyvalue | from_yaml }}"
 
 #########################################################
 ## Post-configure                                      ##

@@ -4,10 +4,6 @@
 ## Configure Server module                             ##
 #########################################################
 
-#########################################################
-## Pre-Configuration                                   ##
-#########################################################
-
 # Set admin_username if not defined
 - name: Set variable (admin_username)...
   ansible.builtin.set_fact:
@@ -44,8 +40,8 @@
     automation_password: "{{ lookup('password', '/dev/null length=12 chars=ascii_letters,digits') }}"
   when: automation_password is not defined
 
-# add automation user to sudoers
-- name: Add automation user to sudoers...
+# add admin user to sudoers
+- name: Add admin user to sudoers...
   become: true
   ansible.builtin.lineinfile:
     path: /etc/sudoers
@@ -53,6 +49,4 @@
     regexp: '^{{ admin_username }}'
     line: '{{ admin_username }} ALL=(ALL) NOPASSWD:ALL'
     validate: 'visudo -cf %s'
-  when: automation_username is defined
-
-
+  when: admin_username is defined

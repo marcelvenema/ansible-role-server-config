@@ -1,12 +1,12 @@
 ---
 
 #########################################################
-## Get status                                          ##
+## Get status module                                   ##
 #########################################################
-# If action variable is not defined, set to install
+# If action variable is not defined, set to configure_server
 
 # Set action variable if not defined
 - name: Set variable (action)...
   set_fact:
-    action: "install"
+    action: "configure_server"
   when: action is not defined

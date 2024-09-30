@@ -1,13 +1,19 @@
 ---
 
 #########################################################
-## Gather information                                  ##
+## first_config module                                 ##
 #########################################################
 
-# Set action_parameters variable to parameter list in actions where key is equal to action
-- name: "Gather variables for action ({{ action }})..."
-  set_fact:
-    action_parameters: "{{ (actions | map('dict2items') | map('first') | selectattr('key', 'equalto', action) | map(attribute='value') | first).parameters }}"
+# Validate global variables
+- name: Validate required variables for Sonatype Nexus administration module...
+  ansible.builtin.assert:
+    that: "varitem is defined"
+    fail_msg: "Required variable '{{ varitem }}' has not been provided."
+    quiet: true
+  loop_control:
+    loop_var: varitem
+  loop:
+    - server_hostname
 
 #########################################################
 ## Network configuration                               ##
@@ -23,9 +29,10 @@
 - name: "Set timezone to {{ timezone }}..."
   community.general.timezone:
     name: "{{ timezone }}"
+  when: timezone is defined
 
 # Remove IPv6 from host file
-
+# TODO
 
 # Install packages
 - name: Install required packages...

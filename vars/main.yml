@@ -6,7 +6,10 @@ actions:
       icon: "media/icon_vm_config.png"
       parameters:
         - server_hostname:
-            description: "Hostname of the server."
+            description: "Naam van de server."
+        - timezone:
+            description: "Timezone."
+            required: false
 
   - configure_server:
       description: "Configure server."
