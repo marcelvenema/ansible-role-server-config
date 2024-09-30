@@ -8,32 +8,58 @@ actions:
         - server_hostname:
             description: "Naam van de server."
         - timezone:
-            description: "Timezone."
+            description: "Tijdzone, bijvoorbeeld Europe/Amsterdam."
             required: false
+            value: "Europe/Amsterdam"
 
   - configure_server:
       description: "Configure server."
       icon: "media/icon_vm_config.png"
       parameters:
-        - automation_username:
-            description: "Username for automation."
-        - automation_password:
-            description: "Password for automation."
+        - admin_username:
+            description: "Gebruikersnaam admin gebruiker, standaard is 'admin'."
+            required: false
+            value: "admin"
+        - admin_password:
+            description: "Wachtwoord voor gebruiker admin."
+            required: false
 
   - configure_vault:
       description: "Configure vault."
       icon: "media/icon_vm_config.png"
       parameters:
         - vault_address:
-            description: "Address of the vault."
+            description: "URL naar vault adres voor toegang tot Vault, bijvoorbeeld http://localhost:8081."
+            required: true
         - vault_token:
-            description: "Token"
+            description: "Token voor toegang tot Vault."
+            required: true
+        - admin_username:
+            description: "Gebruikersnaam admin gebruiker, standaard is 'admin'."
+            required: false
+            value: "admin"
+        - admin_password:
+            description: "Wachtwoord voor gebruiker admin."
+            required: false
+        - automation_username:
+            description: "Gebruikersnaam voor automatisering, standaard is 'ansible'."
+            required: false
+            value: "ansible"
+        - automation_password:
+            description: "Wachtwoord voor gebruiker automatisering."
+            required: false
+        - automation_email:
+            description: "E-mailadres voor automatisering."
+            required: false
+            value: "ansible@localhost"
 
   - initialize:
       description: "Initialize environment."
       icon: "media/icon_vm_config.png"
       parameters:
         - vault_address:
-            description: "Address of the vault."
+            description: "URL naar vault adres voor toegang tot Vault, bijvoorbeeld http://localhost:8081."
+            required: true
         - vault_token:
-            description: "Token"
+            description: "Token voor toegang tot Vault."
+            required: true

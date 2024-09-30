@@ -34,7 +34,7 @@ variabelen:<br/>
 <kbd>admin_password</kbd> (optioneel) : Wachtwoord van admin user, standaard is automatisch gegenereerd.<br/>
 <kbd>automation_username</kbd> (optioneel) : Gebruikersnaam automation user, standaard is 'ansible'.<br/>
 <kbd>automation_password</kbd> (optioneel) : Wachtwoord van automation user, standaard is automatisch gegenereerd.<br/>
-<kbd>automation_email</kbd> (optioneel) : "email@mindef.nl"<br/>
+<kbd>automation_email</kbd> (optioneel) : E-mail adres van automation gebruiker."<br/>
 
 action: **initialize**<br/>
 Initialiseer omgeving, test Vault verbinding.<br/>
