@@ -55,6 +55,7 @@
 - name: Set variable (admin_password)...
   ansible.builtin.set_fact:
     admin_password: ""
+  when: admin_password is not defined
 
 # Set variable if not defined
 - name: Set variable (automation_username)...
@@ -66,6 +67,7 @@
 - name: Set variable (automation_password)...
   ansible.builtin.set_fact:
     automation_password: ""
+  when: automation_password is not defined
 
 # Set variable if not defined
 - name: Set variable (automation_email)...
@@ -101,5 +103,4 @@
 # Unset variables
 - name: Unset variables...
   ansible.builtin.set_fact:
-    automation_password:
     admin_password:

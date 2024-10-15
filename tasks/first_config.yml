@@ -42,3 +42,11 @@
   loop:
     - nano
     - git
+
+# Install python packages
+- name: Install required python packages...
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - passlib
