@@ -5,7 +5,7 @@
 #########################################################
 
 # Validate global variables
-- name: Validate required variables for Sonatype Nexus administration module...
+- name: Validate required variables for server configuration module...
   ansible.builtin.assert:
     that: "varitem is defined"
     fail_msg: "Required variable '{{ varitem }}' has not been provided."
@@ -34,6 +34,10 @@
 # Remove IPv6 from host file
 # TODO
 
+#########################################################
+## Packages configuration                              ##
+#########################################################
+
 # Install packages
 - name: Install required packages...
   ansible.builtin.package:
@@ -43,10 +47,47 @@
     - nano
     - git
 
-# Install python packages
-- name: Install required python packages...
-  ansible.builtin.pip:
-    name: "{{ item }}"
+#########################################################
+## User configuration                                  ##
+#########################################################
+
+# Set admin_username if not defined
+- name: Set variable (admin_username)...
+  ansible.builtin.set_fact:
+    admin_username: "admin"
+  when: admin_username is not defined
+
+# Set admin_password if not defined, generate password, 12 characters long
+- name: Set variable (admin_password)...
+  ansible.builtin.set_fact:
+    admin_password: "{{ lookup('password', '/dev/null length=12 chars=ascii_letters,digits') }}"
+  when: admin_password is not defined
+
+# Create user if defined
+- name: "Create user ({{ admin_username }})..."
+  ansible.builtin.user:
+    name: "{{ admin_username }}"
     state: present
-  loop:
-    - passlib
+    shell: /bin/bash
+    createhome: yes
+    system: yes
+    comment: "Admin user"
+  when: admin_username is defined
+
+# Set password for user
+- name: "Set password for user ({{ admin_username }})..."
+  ansible.builtin.user:
+    name: "{{ admin_username }}"
+    password: "{{ admin_password | password_hash('sha512') }}"
+  when: admin_username is defined
+
+# add admin user to sudoers
+- name: Add admin user to sudoers...
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^{{ admin_username }}'
+    line: '{{ admin_username }} ALL=(ALL) NOPASSWD:ALL'
+    validate: 'visudo -cf %s'
+  when: admin_username is defined

@@ -63,3 +63,12 @@ actions:
         - vault_token:
             description: "Token voor toegang tot Vault."
             required: true
+
+  - platform_check:
+      description: "Platform check."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - platform:
+            description: "Platform, bijvoorbeeld host, podman of kubernetes."
+            required: false
+            value: "host"

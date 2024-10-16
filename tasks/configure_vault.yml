@@ -1,8 +1,11 @@
 ---
 
 #########################################################
-## Vault module                                        ##
+## Vault module for server config                      ##
 #########################################################
+# secret engine name (vault_name): devices
+# secret engine type: kv
+# secret name: variable server_vault_id, default '{{ ansible_fqdn | replace('.', '-') }}'
 
 # Validate variables
 - name: Validate required variables for action.
@@ -14,76 +17,44 @@
     - vault_address
     - vault_token
 
-#########################################################
-## Configuration Vault KV                              ##
-#########################################################
-
-# Clear variable, be sure it is not used from a previous run.
-- name: Clear variable vault_name
+# Register variable (_vault_name) 
+- name: Register variable (vault_name)...
   ansible.builtin.set_fact:
-    vault_name: ""
-  no_log: true
+   _vault_name: "{{ server_vault_name | default('devices') }}"
 
-# Clear variable, be sure it is not used from a previous run.
-- name: Clear variable vault_description
+# Register variable (_secret_name)
+- name: Register variable (secret_name)...
   ansible.builtin.set_fact:
-    vault_description: ""
-  no_log: true
+    _secret_name: "{{ server_vault_id | default( ansible_fqdn | replace('.', '-')) }}"
+
+#########################################################
+## Secret Engine (devices)                             ##
+#########################################################
 
 # Create secret engine
-- name: Create secret engine
+- name: Create secret engine...
   ansible.builtin.include_role:
     name: vault
     tasks_from: secret_engine.yml
   vars:
     action: create_secret_engine
-    vault_name: "devices"
-    vault_description: "Secrets for various devices"
+    vault_name: "{{ _vault_name }}"
+    vault_description: "{{ server_vault_description | default('Secrets for devices') }}"
     vault_type: "kv"
 
 #########################################################
-## Configuration secrets                               ##
+## Secrets (fqdn)                                      ##
 #########################################################
-
-# Set variable if not defined
-- name: Set variable (admin_username)...
-  ansible.builtin.set_fact:
-    admin_username: "admin"
-  when: admin_username is not defined
-
-# Set variable if not defined
-- name: Set variable (admin_password)...
-  ansible.builtin.set_fact:
-    admin_password: ""
-  when: admin_password is not defined
-
-# Set variable if not defined
-- name: Set variable (automation_username)...
-  ansible.builtin.set_fact:
-    automation_username: "ansible"
-  when: automation_username is not defined
-
-# Set variable if not defined
-- name: Set variable (automation_password)...
-  ansible.builtin.set_fact:
-    automation_password: ""
-  when: automation_password is not defined
-
-# Set variable if not defined
-- name: Set variable (automation_email)...
-  ansible.builtin.set_fact:
-    automation_email: "ansible@{{ ansible_fqdn }}"
-  when: automation_email is not defined
 
 # Declare variable _secret_keyvalue
 - name: Register variable (secret_keyvalue)...
   ansible.builtin.set_fact:
     _secret_keyvalue: |
-      admin_username: '{{ admin_username }}'
-      admin_password: '{{ admin_password }}'
-      automation_username: '{{ automation_username }}'
-      automation_password: '{{ automation_password }}'
-      automation_email: '{{ automation_email }}'
+      admin_username: '{{ admin_username | default('admin') }}'
+      admin_password: '{{ admin_password | default('') }}'
+      automation_username: '{{ automation_username | default('ansible') }}'
+      automation_password: '{{ automation_password | default('') }}'
+      automation_email: '{{ automation_email | default('ansible@{{ ansible_fqdn }}') }}'
 
 # Store usernames and passwords in Hashicorp Vault.
 - name: "Store {{ ansible_fqdn }} usernames and passwords in Vault"
@@ -92,8 +63,8 @@
     tasks_from: secrets.yml
   vars:
     action: create_secret
-    vault_name: "devices"
-    secret_name: "{{ ansible_fqdn | replace('.', '-') }}"
+    vault_name: "{{ _vault_name }}"
+    secret_name: "{{ _secret_name }}"
     secret_keyvalue: "{{ _secret_keyvalue | from_yaml }}"
 
 #########################################################

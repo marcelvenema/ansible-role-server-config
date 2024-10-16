@@ -39,3 +39,7 @@
 - name: Start initialize action...
   ansible.builtin.include_tasks: initialize.yml
   when: action == "initialize"
+
+- name: Start platform_check action...
+  ansible.builtin.include_tasks: platform_check.yml
+  when: action == "platform_check"
