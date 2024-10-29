@@ -38,6 +38,11 @@
 ## Packages configuration                              ##
 #########################################################
 
+# Information message
+- name: Information message...
+  ansible.builtin.debug:
+    msg: "Installing required packages, this may take a while..."
+
 # Install packages
 - name: Install required packages...
   ansible.builtin.package:
@@ -46,6 +51,7 @@
   loop:
     - nano
     - git
+    - tar
 
 #########################################################
 ## User configuration                                  ##

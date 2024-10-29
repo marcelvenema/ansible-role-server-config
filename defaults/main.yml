@@ -7,7 +7,6 @@ server_hostname: ""
 # timezone is the timezone of the server. example: "Europe/Amsterdam".
 timezone: "Europe/Amsterdam"
 
-
 # Variabelen voor configuratie Vault voor opslag secrets en configuratie data
 
 # server_vault_name is the name of the vault used for storing secrets and configuration data. example: "server".
