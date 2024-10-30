@@ -74,4 +74,6 @@
 # Unset variables
 - name: Unset variables...
   ansible.builtin.set_fact:
-    admin_password:
+    _vault_name: null
+    _secret_name: null
+    _secret_keyvalue: null

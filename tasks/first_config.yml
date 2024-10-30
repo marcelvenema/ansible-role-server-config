@@ -102,3 +102,8 @@
     line: '{{ admin_username }} ALL=(ALL) NOPASSWD:ALL'
     validate: 'visudo -cf %s'
   when: admin_username is defined
+
+#########################################################
+## Post-config                                         ##
+#########################################################
+
