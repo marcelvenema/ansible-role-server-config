@@ -15,6 +15,11 @@
   loop:
     - server_hostname
 
+# Register global variable
+- name: Register global variable (server_hostname)...
+  ansible.builtin.set_fact:
+    server_hostname: "{{ server_hostname }}"
+
 #########################################################
 ## Network configuration                               ##
 #########################################################
