@@ -3,83 +3,78 @@
 <table border="0">
   <tr>
     <td width="160px" valign="top"><img src="media/icon_vm_config.png" align="left" height="128" width="128" /></td>
-    <td>Ansible playbooks voor configuratie van een server.<br/>
+    <td>Ansible playbooks for server configuration.<br/>
         <br/>
         <br/>
-        Wordt mogelijk in de toekomst vervangen door Ansile role os-settings.<br/>
+        May be replaced by Ansile role os-settings in the future.<br/>
     </td>
   </tr>
 </table>
 
-# Diensten:
+# Services:
 
 action: **first_config**<br/>
-Initiele configuratie van server, o.a. set hostname, timezone, install apps, etc. <br/>
-variabelen:<br/>
-<kbd>server_hostname</kbd> : naam van de server.<br/>
-<kbd>timezone</kbd> (optioneel) : Voorbeeld: 'Europe/Amsterdam'.
+Initial server configuration, e.g., set hostname, timezone, install apps, etc. <br/>
+variables:<br/>
+<kbd>server_hostname</kbd> : name of the server.<br/>
+<kbd>timezone</kbd> (optional) : Example: 'Europe/Amsterdam'.
 
 action: **configure_server**<br/>
-Configuratie van server, o.a. aanmaken admin user.<br/>
-variabelen:<br/>
-<kbd>admin_username</kbd> (optioneel) : Gebruikersnaam admin user, standaard is 'admin'.<br/>
-<kbd>admin_password</kbd> (optioneel) : Wachtwoord van admin user, standaard is automatisch gegenereerd.<br/>
+Server configuration, e.g., create admin user.<br/>
+variables:<br/>
+<kbd>admin_username</kbd> (optional) : Username of admin user, default is 'admin'.<br/>
+<kbd>admin_password</kbd> (optional) : Password of admin user, default is automatically generated.<br/>
 
 action: **configure_vault**<br/>
-Configuratie van server gegevens in Hashicorp Vault.<br/>
-variabelen:<br/>
-<kbd>vault_address</kbd> : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`. <br/>
-<kbd>vault_token</kbd> : token voor toegang tot vault.<br/>
-<kbd>admin_username</kbd> (optioneel) : Gebruikersnaam admin user, standaard is 'admin'.<br/>
-<kbd>admin_password</kbd> (optioneel) : Wachtwoord van admin user, standaard is automatisch gegenereerd.<br/>
-<kbd>automation_username</kbd> (optioneel) : Gebruikersnaam automation user, standaard is 'ansible'.<br/>
-<kbd>automation_password</kbd> (optioneel) : Wachtwoord van automation user, standaard is automatisch gegenereerd.<br/>
-<kbd>automation_email</kbd> (optioneel) : E-mail adres van automation gebruiker."<br/>
+Server configuration in Hashicorp Vault.<br/>
+variables:<br/>
+<kbd>vault_address</kbd> : URL to vault address for vault access, e.g., `http://localhost:8081`. <br/>
+<kbd>vault_token</kbd> : token for vault access.<br/>
+<kbd>admin_username</kbd> (optional) : Username of admin user, default is 'admin'.<br/>
+<kbd>admin_password</kbd> (optional) : Password of admin user, default is automatically generated.<br/>
+<kbd>automation_username</kbd> (optional) : Username of automation user, default is 'ansible'.<br/>
+<kbd>automation_password</kbd> (optional) : Password of automation user, default is automatically generated.<br/>
+<kbd>automation_email</kbd> (optional) : Email address of automation user.<br/>
 
 action: **initialize**<br/>
-Initialiseer omgeving, test Vault verbinding.<br/>
-variabelen:<br/>
-<kbd>vault_address</kbd> : URL naar vault adres voor toegang vault, bijvoorbeeld `http://localhost:8081`.<br/>
-<kbd>vault_token</kbd> : token voor toegang tot vault.<br/>
+Initialize environment, test Vault connection.<br/>
+variables:<br/>
+<kbd>vault_address</kbd> : URL to vault address for vault access, e.g., `http://localhost:8081`.<br/>
+<kbd>vault_token</kbd> : token for vault access.<br/>
 
 ***
 
 - **changelog**<br/>
-  Wijzigingen logboek.<br/>
-  Zie [changelog](CHANGELOG.md)<br/>
+  Change log.<br/>
+  See [changelog](CHANGELOG.md)<br/>
 
 - **roadmap**<br/>
-  Visie en toekomstige ontwikkelingen.<br/>
-  Zie [roadmap](ROADMAP.md)<br/>
+  Vision and future developments.<br/>
+  See [roadmap](ROADMAP.md)<br/>
 
 ***
 
-## Voorbereidingen
-(geen)<br/>
+## Preparations
+(none)<br/>
 
-## Afhankelijkheden
-Afhankelijkheden zijn benoemd in het **requirements.yml** bestand. Gebruik `ansible-galaxy install -r requirements.yml --force` voor installatie.<br/>
+## Dependencies
+Dependencies are listed in the **requirements.yml** file. Use `ansible-galaxy install -r requirements.yml --force` for installation.<br/>
 
-Indien deze role in andere playbooks of Ansible projecten wordt gebruikt, dient de URL van deze rol te worden toegevoegd aan het `requirements.yml` bestand. Via bovenstaand command wordt de rol dan in de juiste folderstructuur geplaatst.<br/>
-Let op! Vergewis u dat de inhoud van `requirements.yml` verwijst naar de juiste repositories.<br/>
+If this role is used in other playbooks or Ansible projects, the URL of this role should be added to the `requirements.yml` file. Using the above command, the role will be placed in the correct folder structure.<br/>
+Note! Ensure that the content of `requirements.yml` refers to the correct repositories.<br/>
 <br/>
 
+## Installation
+No installation required.<br/>
 
-## Installatie
-Geen installatie benodigd.<br/>
+## Configuration
+(none).<br/>
 
+## Other information
+(none).<br/>
 
-## Configuratie
-(geen).<br/>
-
-
-## Overige informatie
-(geen).<br/>
-
-
-## Licentie
+## License
 MIT
 
-
-## Auteur
+## Author
 Marcel Venema

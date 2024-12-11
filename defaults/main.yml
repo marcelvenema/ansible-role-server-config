@@ -1,13 +1,13 @@
 ---
 
-# Variabelen voor configuratie van server
+# Variables for server configuration
 
 # server_hostname is the hostname of the server. example: "server".
 server_hostname: ""
 # timezone is the timezone of the server. example: "Europe/Amsterdam".
 timezone: "Europe/Amsterdam"
 
-# Variabelen voor configuratie Vault voor opslag secrets en configuratie data
+# Variables for Vault configuration for storing secrets and configuration data
 
 # server_vault_name is the name of the vault used for storing secrets and configuration data. example: "server".
 # server_vault_name: ""
@@ -15,3 +15,4 @@ timezone: "Europe/Amsterdam"
 # server_vault_description: ""
 # server_vault_id is the unique id of the vault used for storing secrets and configuration data. default is {{ansible_fqdn }}.
 # server_vault_id: ""
+

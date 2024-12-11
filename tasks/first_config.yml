@@ -36,9 +36,6 @@
     name: "{{ timezone }}"
   when: timezone is defined
 
-# Remove IPv6 from host file
-# TODO
-
 #########################################################
 ## Packages configuration                              ##
 #########################################################

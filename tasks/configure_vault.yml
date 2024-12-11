@@ -17,7 +17,7 @@
     - vault_address
     - vault_token
 
-# Register variable (_vault_name) 
+# Register variable (_vault_name)
 - name: Register variable (vault_name)...
   ansible.builtin.set_fact:
    _vault_name: "{{ server_vault_name | default('devices') }}"
@@ -55,6 +55,7 @@
       automation_username: '{{ automation_username | default('ansible') }}'
       automation_password: '{{ automation_password | default('') }}'
       automation_email: '{{ automation_email | default('ansible@{{ ansible_fqdn }}') }}'
+      ssh_key: 'change_me'
 
 # Store usernames and passwords in Hashicorp Vault.
 - name: "Store {{ ansible_fqdn }} usernames and passwords in Vault"
