@@ -20,7 +20,7 @@
 # Register variable (_secret_engine_name)
 - name: Register variable (secret_engine_name)...
   ansible.builtin.set_fact:
-   _secret_engine_name: "{{ secret_engine_name | default('devices') }}"
+   _secret_engine_name: "{{ server_secret_engine_name | default('devices') }}"
 
 # Register variable (_secret_name)
 - name: Register variable (secret_name)...
@@ -39,7 +39,7 @@
   vars:
     action: create_secret_engine
     secret_engine_name: "{{ _secret_engine_name }}"
-    secret_engine_description: "{{ secret_engine_description | default('Secrets for devices') }}"
+    secret_engine_description: "{{ server_secret_engine_description | default('Secrets for devices') }}"
     secret_engine_type: "kv"
 
 #########################################################
