@@ -3,7 +3,7 @@
 #########################################################
 ## Vault module for server config                      ##
 #########################################################
-# secret engine name (vault_name): devices
+# secret engine name : devices
 # secret engine type: kv
 # secret name: variable server_vault_id, default '{{ ansible_fqdn | replace('.', '-') }}'
 
@@ -17,10 +17,10 @@
     - vault_address
     - vault_token
 
-# Register variable (_vault_name)
-- name: Register variable (vault_name)...
+# Register variable (_secret_engine_name)
+- name: Register variable (secret_engine_name)...
   ansible.builtin.set_fact:
-   _vault_name: "{{ server_vault_name | default('devices') }}"
+   _secret_engine_name: "{{ secret_engine_name | default('devices') }}"
 
 # Register variable (_secret_name)
 - name: Register variable (secret_name)...
@@ -38,8 +38,8 @@
     tasks_from: secret_engine.yml
   vars:
     action: create_secret_engine
-    vault_name: "{{ _vault_name }}"
-    vault_description: "{{ server_vault_description | default('Secrets for devices') }}"
+    vault_name: "{{ _secret_engine_name }}"
+    vault_description: "{{ secret_engine_description | default('Secrets for devices') }}"
     vault_type: "kv"
 
 #########################################################
@@ -64,7 +64,7 @@
     tasks_from: secrets.yml
   vars:
     action: create_secret
-    vault_name: "{{ _vault_name }}"
+    vault_name: "{{ _secret_engine_name }}"
     secret_name: "{{ _secret_name }}"
     secret_keyvalue: "{{ _secret_keyvalue | from_yaml }}"
 
