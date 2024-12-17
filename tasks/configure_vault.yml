@@ -64,7 +64,7 @@
     tasks_from: secrets.yml
   vars:
     action: create_secret
-    vault_name: "{{ _secret_engine_name }}"
+    secret_engine_name: "{{ _secret_engine_name }}"
     secret_name: "{{ _secret_name }}"
     secret_keyvalue: "{{ _secret_keyvalue | from_yaml }}"
 
@@ -75,6 +75,6 @@
 # Unset variables
 - name: Unset variables...
   ansible.builtin.set_fact:
-    _vault_name: null
+    _secret_engine_name: null
     _secret_name: null
     _secret_keyvalue: null
