@@ -32,8 +32,8 @@
 
 # Set timezone
 - name: "Set timezone to {{ timezone }}..."
-  community.general.timezone:
-    name: "{{ timezone }}"
+  ansible.builtin.command:
+    cmd: "timedatectl set-timezone {{ timezone }}"
   when: timezone is defined
 
 #########################################################
