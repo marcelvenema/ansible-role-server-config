@@ -3,6 +3,9 @@
 #########################################################
 ## first_config module                                 ##
 #########################################################
+# first config sets the hostname, timezone, and checks the ansible version.
+# recommended ansible version is 2.18+
+# to install ansible 2.18+ use the following command: pip install ansible==2.18
 
 # Validate global variables
 - name: Validate required variables for server configuration module...
@@ -19,6 +22,13 @@
 - name: Register global variable (server_hostname)...
   ansible.builtin.set_fact:
     server_hostname: "{{ server_hostname }}"
+
+# Test for ansible version, recommended version is 2.18+, show warning if version is lower
+- name: Test for ansible version...
+  ansible.builtin.assert:
+    that: "ansible_version.full is version('2.18', '>=')"
+    fail_msg: "Ansible version is lower than 2.18. Recommended version is 2.18+"
+    quiet: true
 
 #########################################################
 ## Network configuration                               ##
@@ -46,21 +56,9 @@
 - name: Information message...
   ansible.builtin.debug:
     msg: "Installing required packages, this may take a while..."
-
-# Install packages
-- name: Install required system packages...
-  become: true
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - nano
-    - git
-    - tar
-    - python3-pip
-  
-
+ 
 # Install Python packages
+# passlib required to set password when creating users
 - name: Install required Python packages...
   ansible.builtin.pip:
     name: "{{ item }}"
