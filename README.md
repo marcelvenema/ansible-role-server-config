@@ -41,8 +41,8 @@ Server configuration in Hashicorp Vault.<br>
 variables:<br>
 <kbd>vault_address</kbd> : URL to vault address for vault access, e.g., `http://localhost:8081`. <br>
 <kbd>vault_token</kbd> : token for vault access.<br/>
-<kbd>admin_username</kbd> (optional) : Username of admin user, default is 'admin'.<br>
-<kbd>admin_password</kbd> (optional) : Password of admin user, default is automatically generated.<br>
+<kbd>podman_service_username</kbd> (optional) : Username of podman service user, default is 'podman'.<br>
+<kbd>podman_service_password</kbd> (optional) : Password of podman service user, default is automatically generated.<br>
 <kbd>automation_username</kbd> (optional) : Username of automation user, default is 'ansible'.<br>
 <kbd>automation_password</kbd> (optional) : Password of automation user, default is automatically generated.<br>
 <kbd>automation_email</kbd> (optional) : Email address of automation user.<br>

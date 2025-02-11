@@ -34,12 +34,12 @@ actions:
                 - vault_token:
                         description: "Token for accessing Vault."
                         required: true
-                - admin_username:
-                        description: "Admin username, default is 'admin'."
+                - podman_service_username:
+                        description: "Podman service username, default is 'admin'."
                         required: false
                         value: "admin"
-                - admin_password:
-                        description: "Password for admin user."
+                - podman_service_password:
+                        description: "Password for podman service user."
                         required: false
                 - automation_username:
                         description: "Username for automation, default is 'ansible'."
