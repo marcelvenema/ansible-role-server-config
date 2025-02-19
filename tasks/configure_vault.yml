@@ -32,7 +32,6 @@
 #########################################################
 ## Secret Engine (devices)                             ##
 #########################################################
-
 # Create secret engine
 - name: Create secret engine...
   ansible.builtin.include_role:
@@ -46,7 +45,6 @@
 #########################################################
 ## Secrets (fqdn)                                      ##
 #########################################################
-
 # Declare variable _secret_keyvalue
 - name: Register variable (secret_keyvalue)...
   ansible.builtin.set_fact:
@@ -57,34 +55,8 @@
       ssh_key: 'change_me'
 
 #########################################################
-## Secrets (podman_service_user)                       ##
-#########################################################
-
-# Declare variable _secret_keyvalue
-- name: Register variable (secret_keyvalue_podman)...
-  ansible.builtin.set_fact:
-    _secret_keyvalue_podman: |
-      podman_service_username: '{{ podman_service_username | default('podman') }}'
-      podman_service_password: '{{ podman_service_password | default('change me') }}'
-  when: podman_service_user is defined
-
-- name: Register variable (secret_keyvalue)...
-  ansible.builtin.set_fact:
-    _secret_keyvalue: "{{ _secret_keyvalue | from_yaml | combine(_secret_keyvalue_podman | from_yaml) | to_yaml }}"
-  when: podman_service_user is defined
-
-# Change password on OS for user podman_service_user
-- name: "Change password for user {{ podman_service_user }}..."
-  become: true
-  ansible.builtin.user:
-    name: "{{ podman_service_user }}"
-    password: "{{ podman_service_password | password_hash('sha512') }}"
-  when: podman_service_user is defined and podman_service_password is defined
-
-#########################################################
 ## Store secrets                                       ##
 #########################################################
-
 # Store usernames and passwords in Hashicorp Vault.
 - name: "Store {{ ansible_fqdn }} usernames and passwords in Vault"
   ansible.builtin.include_role:
@@ -98,7 +70,6 @@
 #########################################################
 ## Post-configure                                      ##
 #########################################################
-
 # Unset variables
 - name: Unset variables...
   ansible.builtin.set_fact:

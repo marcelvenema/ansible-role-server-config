@@ -1,7 +1,7 @@
 ---
 
 #########################################################
-## Main module for server-config ansible rol           ##
+## Main module for server-config Ansible role          ##
 #########################################################
 
 # Show message
@@ -11,7 +11,7 @@
 
 # If action variable is not defined, gather status of the service and set action variable
 - name: Gather action variable status...
-  ansible.builtin.include_tasks: get_status.yml
+  ansible.builtin.include_tasks: set_action.yml
   when: action is not defined
 
 # Assert that action is in actions
@@ -22,8 +22,13 @@
     fail_msg: "The action '{{ action }}' is not in the list of valid actions..."
     quiet: true
 
-# -------------------------------------------------------
+# TODO: Send message to Kafka bus
+- name: Publish message to Kafka bus...
+  ansible.builtin.debug:
+    msg: "TODO: Publish message to Kafka bus..."
+  when: kafka_bootstrap_servers is defined 
 
+# -------------------------------------------------------
 - name: Start first_config action...
   ansible.builtin.include_tasks: first_config.yml
   when: action == "first_config"
@@ -43,3 +48,4 @@
 - name: Start platform_check action...
   ansible.builtin.include_tasks: platform_check.yml
   when: action == "platform_check"
+# -------------------------------------------------------

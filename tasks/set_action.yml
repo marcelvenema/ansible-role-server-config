@@ -1,7 +1,7 @@
 ---
 
 #########################################################
-## Get status module                                   ##
+## Set action module                                   ##
 #########################################################
 # If action variable is not defined, set to configure_server
 
