@@ -26,8 +26,8 @@
 # Test for ansible version, recommended version is 2.18+, show warning if version is lower
 - name: Test for ansible version...
   ansible.builtin.assert:
-    that: "ansible_version.full is version('2.18', '>=')"
-    fail_msg: "Ansible version is lower than 2.18. Recommended version is 2.18+"
+    that: "ansible_version.full is version('2.15', '>=')"
+    fail_msg: "Ansible version is lower than 2.15. Recommended version is 2.15+"
     quiet: true
 
 #########################################################
