@@ -26,8 +26,8 @@
 # Test for ansible version, recommended version is 2.18+, show warning if version is lower
 - name: Test for ansible version...
   ansible.builtin.assert:
-    that: "ansible_version.full is version('2.15', '>=')"
-    fail_msg: "Ansible version is lower than 2.15. Recommended version is 2.15+"
+    that: "ansible_version.full is version('2.18', '>=')"
+    fail_msg: "Ansible version is lower than 2.18. Recommended version is 2.18+"
     quiet: true
 
 #########################################################
@@ -51,6 +51,20 @@
 #########################################################
 ## Packages configuration                              ##
 #########################################################
+
+# Information message
+- name: Information message...
+  ansible.builtin.debug:
+    msg: "Installing required packages, this may take a while..."
+ 
+# Install Python packages
+# passlib required to set password when creating users
+- name: Install required Python packages...
+  ansible.builtin.pip:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - passlib
 
 #########################################################
 ## Post-config                                         ##

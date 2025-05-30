@@ -52,6 +52,14 @@ variables:<br>
 ```
 
 
+action: **configure_repo**<br>
+Configure repository information for operating system.<br>
+variables:<br>
+<kbd>vault_address</kbd> : URL to vault address for vault access, e.g., `http://localhost:8081`. <br>
+
+
+
+
 action: **initialize**<br>
 Initialize environment, test Vault connection.<br>
 variables:<br>

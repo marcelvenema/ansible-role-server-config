@@ -1,74 +1,79 @@
 ---
 
 actions:
-    - first_config:
-            description: "First configuration."
-            icon: "media/icon_vm_config.png"
-            parameters:
-                - server_hostname:
-                        description: "Name of the server."
-                - timezone:
-                        description: "Timezone, for example Europe/Amsterdam."
-                        required: false
-                        value: "Europe/Amsterdam"
+  - first_config:
+      description: "First configuration."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - server_hostname:
+            description: "Name of the server."
+            required: false
+        - timezone:
+            description: "Timezone, for example Europe/Amsterdam."
+            required: false
+            value: "Europe/Amsterdam"
 
-    - configure_server:
-            description: "Configure server."
-            icon: "media/icon_vm_config.png"
-            parameters:
-                - admin_username:
-                        description: "Admin username, default is 'admin'."
-                        required: false
-                        value: "admin"
-                - admin_password:
-                        description: "Password for admin user."
-                        required: false
+  - configure_server:
+      description: "Configure server."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - admin_username:
+            description: "Admin username, default is 'admin'."
+            required: false
+            value: "admin"
+        - admin_password:
+            description: "Password for admin user."
+            required: false
 
-    - configure_vault:
-            description: "Configure vault."
-            icon: "media/icon_vm_config.png"
-            parameters:
-                - vault_address:
-                        description: "URL to vault address for accessing Vault, for example http://localhost:8081."
-                        required: true
-                - vault_token:
-                        description: "Token for accessing Vault."
-                        required: true
-                - podman_service_username:
-                        description: "Podman service username, default is 'admin'."
-                        required: false
-                        value: "admin"
-                - podman_service_password:
-                        description: "Password for podman service user."
-                        required: false
-                - automation_username:
-                        description: "Username for automation, default is 'ansible'."
-                        required: false
-                        value: "ansible"
-                - automation_password:
-                        description: "Password for automation user."
-                        required: false
-                - automation_email:
-                        description: "Email address for automation."
-                        required: false
-                        value: "ansible@localhost"
+  - configure_vault:
+      description: "Configure vault."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - vault_address:
+            description: "URL to vault address for accessing Vault, for example http://localhost:8081."
+            required: true
+        - vault_token:
+            description: "Token for accessing Vault."
+            required: true
+        - podman_service_username:
+            description: "Podman service username, default is 'admin'."
+            required: false
+            value: "admin"
+        - podman_service_password:
+            description: "Password for podman service user."
+            required: false
+        - automation_username:
+            description: "Username for automation, default is 'ansible'."
+            required: false
+            value: "ansible"
+        - automation_password:
+            description: "Password for automation user."
+            required: false
+        - automation_email:
+            description: "Email address for automation."
+            required: false
+            value: "ansible@localhost"
 
-    - initialize:
-            description: "Initialize environment."
-            icon: "media/icon_vm_config.png"
-            parameters:
-                - vault_address:
-                        description: "URL to vault address for accessing Vault, for example http://localhost:8081."
-                        required: true
-                - vault_token:
-                        description: "Token for accessing Vault."
-                        required: true
+  - configure_repo:
+      description: "Configure OS repository."
+      icon: "media/icon_vm_config.png"
+  
+  - initialize:
+      description: "Initialize environment."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - vault_address:
+            description: "URL to vault address for accessing Vault, for example http://localhost:8081."
+            required: true
+        - vault_token:
+            description: "Token for accessing Vault."
+            required: true
 
-    - platform_check:
-            description: "Platform check."
-            icon: "media/icon_vm_config.png"
-            parameters:
-                - platform:
-                        description: "Platform, for example host, podman or kubernetes."
-                        required: false
-                        value: "host"
+  - platform_check:
+      description: "Platform check."
+      icon: "media/icon_vm_config.png"
+      parameters:
+        - platform:
+            description: "Platform, for example host, podman or kubernetes."
+            required: false
+            value: "host"

@@ -1,7 +1,7 @@
 ---
 
 #########################################################
-## Main module for server-config Ansible role          ##
+## Main module for server-config role                  ##
 #########################################################
 
 # Show message
@@ -41,6 +41,10 @@
   ansible.builtin.include_tasks: configure_vault.yml
   when: action == "configure_vault"
 
+- name: Start configure_repo action...
+  ansible.builtin.include_tasks: configure_repo.yml
+  when: action == "configure_repo"  
+
 - name: Start initialize action...
   ansible.builtin.include_tasks: initialize.yml
   when: action == "initialize"
@@ -48,4 +52,5 @@
 - name: Start platform_check action...
   ansible.builtin.include_tasks: platform_check.yml
   when: action == "platform_check"
+
 # -------------------------------------------------------

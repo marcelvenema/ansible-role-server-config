@@ -1,6 +1,6 @@
 ---
 
-# Variables for server configuration
+# Variables for server-config role
 
 # server_hostname is the hostname of the server. example: "server".
 server_hostname: ""
