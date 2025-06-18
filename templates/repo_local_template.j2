@@ -1,11 +1,17 @@
 [baseos]
 name=Rocky Linux 9 - BaseOS local file
-baseurl={{ repo_base_url }}/rockylinux/9/baseos/
+baseurl={{ repo_url_baseos }}
 enabled=1
 gpgcheck=0
 
 [appstream]
 name=Rocky Linux 9 - AppStream local file
-baseurl={{ repo_base_url }}/rockylinux/9/appstream/
+baseurl={{ repo_url_appstream }}
+enabled=1
+gpgcheck=0
+
+[extras]
+name=Rocky Linux 9 - Extras local file
+baseurl={{ repo_url_extras }}
 enabled=1
 gpgcheck=0

@@ -54,10 +54,6 @@ actions:
             required: false
             value: "ansible@localhost"
 
-  - configure_repo:
-      description: "Configure OS repository."
-      icon: "media/icon_vm_config.png"
-  
   - initialize:
       description: "Initialize environment."
       icon: "media/icon_vm_config.png"
