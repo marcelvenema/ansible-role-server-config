@@ -53,6 +53,7 @@
       automation_password: '{{ automation_password | default('') }}'
       automation_email: '{{ automation_email | default('ansible@{{ ansible_fqdn }}') }}'
       ssh_key: 'change_me'
+      vault_id: '{{ server_vault_id | default('change_me') }}'
 
 #########################################################
 ## Store secrets                                       ##
